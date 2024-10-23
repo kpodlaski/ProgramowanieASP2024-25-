@@ -20,5 +20,10 @@ namespace zaj1
         {
             return base.ToString()+" "+Tonnage+"ton";
         }
+
+        override public object Clone()
+        {
+            return new Truck(this.Tonnage, this.Id, this.Brand, this.Year, this.Color);
+        }
     }
 }

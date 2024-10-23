@@ -42,7 +42,15 @@ namespace zaj1
             {
                 Console.WriteLine(car);
             }
-
+            //Kolekcja Set
+            HashSet<Car> carsSet = new HashSet<Car>();
+            foreach (Car car in cars)
+            {
+                carsSet.Add(car);
+            }
+            Console.WriteLine("ilość elemntów w zbiorze:"+carsSet.Count);
+            carsSet.Add((Car) c.Clone());
+            Console.WriteLine("ilość elemntów w zbiorze:" + carsSet.Count);
         }
     }
 }

@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace zaj1
 {
-    class Car : IComparable<Car>
+    class Car : IComparable<Car>, ICloneable
     {
-        int Id;
+        protected int Id;
         public String Brand { get; private set; }
-        int Year;
+        protected int Year;
         public String Color;
 
         public Car()
@@ -37,6 +38,25 @@ namespace zaj1
         public int CompareTo(Car other)
         {
             return this.Id - other.Id;
+        }
+
+        virtual public object Clone()
+        {
+            return new Car(this.Id,this.Brand, this.Year, this.Color);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is not Car) return false;
+            Car other = (Car)obj;
+            return (this.Id == other.Id) && (this.Brand.Equals(other.Brand));
+        }
+
+        public override int GetHashCode()
+        {
+            int hash = Id;
+            hash += 17 * this.Brand.GetHashCode(); 
+            return hash;
         }
     }
 }
